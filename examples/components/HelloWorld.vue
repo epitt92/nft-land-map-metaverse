@@ -1,10 +1,10 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>
+    <!-- <p>
       <span> Current coordinates {{x}},{{y}}</span>
-    </p>
-    <h5> <span> <button @click="handleClickFilter"> click Filter</button></span> </h5>
+    </p> -->
+    <!-- <h5> <span> <button @click="handleClickFilter"> click Filter</button></span> </h5> -->
 
     <div style="display: flex;justify-content: center; margin-top: 20px;">
 

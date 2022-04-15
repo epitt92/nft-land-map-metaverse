@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld msg=" vue lands tile map" />
+  <HelloWorld msg="Land NFT Map" />
 </template>
 
 <script>
