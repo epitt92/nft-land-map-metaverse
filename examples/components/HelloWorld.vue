@@ -7,7 +7,7 @@
     </p> -->
     <!-- <h5> <span> <button @click="handleClickFilter"> click Filter</button></span> </h5> -->
     <!-- <div>{{tileMapMapmatrix}}</div> -->
-    <div style="display: flex;justify-content: center; margin-top: 20px;">
+    <div style="display: flex;justify-content: center;">
 
       <vue-lands-tile-map ref="landsTileMapRef"
                           :tileMapMapmatrix="tileMapMapmatrix"
