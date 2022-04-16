@@ -163,6 +163,7 @@ export default {
       var _this = this;
       var canvas = _this.myCanvas;
       canvas.onmousedown = function (event) {
+        alert()
         var imgx = _this.paintingX;
         var imgy = _this.paintingY;
 
