@@ -11,6 +11,13 @@ const port =  5000;
 app.use(cors());
 app.use(express.json());
 router.use(require("./routes/landnfts"));
+// Making Build Folder as Public 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', router);  // path must route to lambda
 
