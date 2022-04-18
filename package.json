@@ -38,8 +38,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "mysql": "^2.18.1",
     "vue": "^2.6.11",
-    "vue-lands-tile-map": "^1.0.2"
+    "vue-lands-tile-map": "^1.0.2",
+    "axios": ""
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.15",
@@ -69,5 +71,6 @@
     "last 2 versions",
     "not dead"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "proxy": "localhost:5000"
 }
