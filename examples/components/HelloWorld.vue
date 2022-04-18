@@ -136,7 +136,7 @@ export default {
     // Get plots data using api
     console.log("beforeCreate")
     axios
-      .get('http://localhost:5000/getall')
+      .get('/getall')
       .then(response => {
         console.log('after mysql');
         this.tileMapMapmatrix = response.data
