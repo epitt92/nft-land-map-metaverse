@@ -134,6 +134,7 @@ export default {
   },
   beforeCreate() {
     // Get plots data using api
+    // this.tileMapMapmatrix = "https://localhost:5000/test.png"
     console.log("beforeCreate")
     axios
       .get('/getall')

@@ -1,4 +1,6 @@
 const express = require("express");
+const { createCanvas } = require('canvas')
+const fs = require('fs')
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
@@ -9,6 +11,7 @@ var mysql = require('mysql')
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
+  // password: "",
   password: "topsecret",
   port:"3306",
   database:"metatruffy"
@@ -23,6 +26,8 @@ recordRoutes.route("/getall").get(function (req, response) {
     con.query(sql, function (err, result) {
       if (err) throw err;
       var arr_result = {};
+
+
       for (let index = 0; index < result.length; index++) {
         var temp = result[index];
         arr_result[temp['posX']+'_'+temp['posY']] = temp;
