@@ -57,43 +57,43 @@ sql = "SELECT *FROM nft_pilot";
 con.query(sql, function (err, result) {
 	if (err) throw err;
 	var arr_result = {};
+*/
+	// const width =10000
+	// const height = 6750
 
-	const width =10000
-	const height = 6750
+	// const cvs = createCanvas(width, height)
+	// const context = cvs.getContext('2d')
 
-	const cvs = createCanvas(width, height)
-	const context = cvs.getContext('2d')
-
-	loadImage('./sample.png').then(image => {
-		context.drawImage(image, 0, 0, width, height)
-		context.lineWidth = 1;
-		context.fillStyle = "#ffffff";
-		context.strokeStyle = "#000000"
-		console.log(result.length)
+	// loadImage('./sample.png').then(image => {
+	// 	context.drawImage(image, 0, 0, width, height)
+	// 	context.lineWidth = 1;
+	// 	context.fillStyle = "#ffffff";
+	// 	context.strokeStyle = "#000000"
+	// 	// console.log(result.length)
 	
-		context.beginPath();
-		for (let index = 0; index < 1000; index++) {
-			// var temp = result[index];
-			console.log(index)
-			// arr_result[temp['posX']+'_'+temp['posY']] = temp;
-			context.moveTo(index*10+1, 0);
-			context.lineTo(index*10+1, height)
+	// 	context.beginPath();
+	// 	for (let index = 0; index < 1000; index++) {
+	// 		// var temp = result[index];
+	// 		console.log(index)
+	// 		// arr_result[temp['posX']+'_'+temp['posY']] = temp;
+	// 		context.moveTo(index*10+1, 0);
+	// 		context.lineTo(index*10+1, height)
 			
-		}
-		for (let index = 0; index < 675; index++) {
-			var temp = result[index];
-			console.log(index)
-			arr_result[temp['posX']+'_'+temp['posY']] = temp;
-			context.moveTo(0, index*10);
-			context.lineTo(width, index*10)
+	// 	}
+	// 	for (let index = 0; index < 675; index++) {
+	// 		// var temp = result[index];
+	// 		// console.log(index)
+	// 		// arr_result[temp['posX']+'_'+temp['posY']] = temp;
+	// 		context.moveTo(0, index*10);
+	// 		context.lineTo(width, index*10)
 			
-		}
-		context.stroke()
+	// 	}
+	// 	context.stroke()
 	
-		const buffer = cvs.toBuffer('image/png')
-		fs.writeFileSync('./public/test.png', buffer)
-	})
-	
+	// 	const buffer = cvs.toBuffer('image/png')
+	// 	fs.writeFileSync('./public/test.png', buffer)
+	// })
+	/*
 	// return response.json(arr_result);
 	// return response.json(result);
 });

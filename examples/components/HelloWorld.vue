@@ -1,6 +1,17 @@
 <template>
   <div class="hello">
     <!-- <div>{{tileMapMapmatrix}}</div> -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" @click="clickSidebar"><img height="100%" :src="colasper" /></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </nav>
     <img id="background" style="display: none;" :src="background" />
     <!-- <p>
       <span> Current coordinates {{x}},{{y}}</span>
@@ -12,6 +23,7 @@
                           :tileMapMapmatrix="tileMapMapmatrix"
                           :tiledDigitalColormap="tiledDigitalColormap"
                           :tileSize="tileSize"
+                          :showMyPlots="showMyPlots"
                           :startPaintingX="startPaintingX"
                           :startPaintingY="startPaintingY"
                           @handleClickTile="handleClickTile"
@@ -24,15 +36,27 @@
         <img id = "terrain" :src="terrain" />
       
     </div> -->
-    <div id="terrainModal" class="modal">
+    <div :class="isCollapsed">
+      <div class="form-container content">
+        <div class="form-heading text-center">
+          <h1>MetaTruffy</h1>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="check1" @click="clickMyPlots" name="option1" value="something" checked>
+          <label class="form-check-label" for="check1"> My plots </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="terrainModal" class="mi-modal">
 
       <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close">&times;</span>
+      <div class="mi-modal-content">
+        <div class="mi-modal-header">
+          <span class="mi-close">&times;</span>
           <h2>Ocean #{{landId}}</h2>
         </div>
-        <div class="modal-body">
+        <div class="mi-modal-body">
           <img id = "terrain" :src="terrain" />
           <div class="terrain-content">
             Owned By {{owner.substring(0,4)+"..."+owner.substr(-4) }}
@@ -85,7 +109,8 @@
   // import json from '../json/map.json'
   import axios from 'axios'
   import image from "../assets/background.jpg"
-  import terrain from "../assets/terrain.gif"
+  import terrain from "../assets/04.gif"
+  import colasper from "../assets/colasper.svg"
 
 export default {
   name: 'HelloWorld',
@@ -94,7 +119,10 @@ export default {
   },
   data () {
     return {
+      isSidebarOpen: true,
+      showMyPlots: true,
       background:image,
+      colasper: colasper,
       landId: -1,
       terrain:terrain,
       owner: "",
@@ -121,15 +149,20 @@ export default {
       ],
       tiledDigitalColormap: [
         { 0: '#138535' },
-        { 1: '#808080' },
-        { 2: '#0070c0' }
+        { 1: '#0000ff' },
+        { 2: '#00ff00' }
       ],
       tileSize: 10,
       x: 0,
       y: 0,
       flag: true,
-      startPaintingX: -750,
-      startPaintingY: -1600
+      startPaintingX: -2800,
+      startPaintingY: -1300
+    }
+  },
+  computed: {
+    isCollapsed(){
+      return this.isSidebarOpen===true ? "sidebar-expanded" : "sidebar-collapsed";
     }
   },
   beforeCreate() {
@@ -137,6 +170,7 @@ export default {
     // this.tileMapMapmatrix = "https://localhost:5000/test.png"
     console.log("beforeCreate")
     axios
+      // .get('http://localhost:5000/getall')
       .get('/getall')
       .then(response => {
         console.log('after mysql');
@@ -145,6 +179,12 @@ export default {
       )
   },
   methods: {
+    clickMyPlots(){
+      this.showMyPlots = !this.showMyPlots;
+    },
+    clickSidebar(){
+      this.isSidebarOpen = !this.isSidebarOpen
+    },
     ceshi () {
       console.log('ceshi');
     },
@@ -160,7 +200,7 @@ export default {
         this.landId = this.tileMapMapmatrix[e.clickX+"_"+e.clickY]['landID']
         //show image modal
         modal.style.display = "block";
-        var span = document.getElementsByClassName("close")[0];
+        var span = modal.getElementsByClassName("mi-close")[0];
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
           modal.style.display = "none";
@@ -197,9 +237,6 @@ export default {
 </script>
 
 <style scoped>
-.hello {
-  text-align: center;
-}
 button {
   height: 30px;
   background: #42b983;
@@ -225,7 +262,7 @@ a {
 }
 
 /* The Modal (background) */
-.modal {
+.mi-modal {
   margin: 20px;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -243,7 +280,7 @@ a {
 }
 
 /* Modal Content */
-.modal-content {
+.mi-modal-content {
   position: fixed;
   /* top: 0; */
   background-color: black;
@@ -254,26 +291,26 @@ a {
 }
 
 /* The Close Button */
-.close {
+.mi-close {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.mi-close:hover,
+.mi-close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-.modal-header {
+.mi-modal-header {
   padding: 20px;
   color: white;
 }
 
-.modal-body {margin: 20px;}
+.mi-modal-body {margin: 20px;}
 
 .terrain-content {
   color: white;
@@ -316,5 +353,41 @@ a {
 @keyframes fadeIn {
   from {opacity: 0} 
   to {opacity: 1}
+}
+.navbar{
+  margin: 0 !important;
+}
+.sidebar-expanded{
+  height: calc(100vh - 60px);
+  left: 0;
+  max-height: 100vh;
+  position: fixed;
+  top: 80px;
+  transition: all .5s;
+  z-index: 0;
+}
+.sidebar-expanded{
+  height: 100vh;
+  left: 0;
+  max-height: 100vh;
+  position: fixed;
+  width: 300px;
+  top: 50px;
+  transition: all .5s;
+  z-index: 0;
+  background-color: rgba(0,0,0,0.8);
+}
+.sidebar-collapsed{
+  transition: all .5s ease 0s;
+  display: none;
+}
+.hello{
+  color: #ffffff;
+}
+.content .form-check{
+  padding: 10px 20px;
+}
+.content .form-check .form-check-input{
+  margin: 0 10px;
 }
 </style>
