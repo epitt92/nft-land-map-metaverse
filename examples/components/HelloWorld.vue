@@ -13,6 +13,7 @@
       </div>
     </nav>
     <img id="background" style="display: none;" :src="background" />
+    <img id="trees" style="display: none;" :src="trees" />
     <!-- <p>
       <span> Current coordinates {{x}},{{y}}</span>
     </p> -->
@@ -119,6 +120,7 @@
   // import json from '../json/map.json'
   import axios from 'axios'
   import image from "../assets/background.jpg"
+  import treeImage from "../assets/trees.png"
   import terrain from "../assets/04.gif"
   import colasper from "../assets/colasper.svg"
 
@@ -134,6 +136,7 @@ export default {
       showMintNFT: true,
       showTrees: true,
       background:image,
+      trees: treeImage,
       colasper: colasper,
       landId: -1,
       terrain:terrain,
