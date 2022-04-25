@@ -24,6 +24,8 @@
                           :tiledDigitalColormap="tiledDigitalColormap"
                           :tileSize="tileSize"
                           :showMyPlots="showMyPlots"
+                          :showMintNFT="showMintNFT"
+                          :showTrees="showTrees"
                           :startPaintingX="startPaintingX"
                           :startPaintingY="startPaintingY"
                           @handleClickTile="handleClickTile"
@@ -43,7 +45,15 @@
         </div>
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="check1" @click="clickMyPlots" name="option1" value="something" checked>
-          <label class="form-check-label" for="check1"> My plots </label>
+          <label class="form-check-label" for="check1"> Show My plots </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="check1" @click="clickNFTMint" name="option2" value="something" checked>
+          <label class="form-check-label" for="check1"> Show Minted NFTs </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="check1" @click="clickTrees" name="option3" value="something" checked>
+          <label class="form-check-label" for="check1"> Show Trees </label>
         </div>
       </div>
     </div>
@@ -121,6 +131,8 @@ export default {
     return {
       isSidebarOpen: true,
       showMyPlots: true,
+      showMintNFT: true,
+      showTrees: true,
       background:image,
       colasper: colasper,
       landId: -1,
@@ -181,6 +193,12 @@ export default {
   methods: {
     clickMyPlots(){
       this.showMyPlots = !this.showMyPlots;
+    },
+    clickMintNFT(){
+      this.showMintNFT = !this.showMintNFT;
+    },
+    clickTrees(){
+      this.showTrees = !this.showTrees;
     },
     clickSidebar(){
       this.isSidebarOpen = !this.isSidebarOpen
