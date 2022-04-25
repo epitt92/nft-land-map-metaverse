@@ -197,7 +197,7 @@ export default {
     clickMyPlots(){
       this.showMyPlots = !this.showMyPlots;
     },
-    clickMintNFT(){
+    clickNFTMint(){
       this.showMintNFT = !this.showMintNFT;
     },
     clickTrees(){
