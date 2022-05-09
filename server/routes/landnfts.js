@@ -60,4 +60,47 @@ recordRoutes.route("/getall").get(function (req, response) {
   // })
 });
 
+// This section will help you create a new record.
+recordRoutes.route("/nfts/:address").get(function (req, response) {
+  // con.connect(function(err){
+    // if(err) throw err;
+    console.log(req.params.address)
+    sql = `SELECT * FROM nft_pilot WHERE owner='${req.params.address}'`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      var arr_result = {};
+
+
+      for (let index = 0; index < result.length; index++) {
+        var temp = result[index];
+        arr_result[temp['posX']+'_'+temp['posY']] = temp;
+      }
+      return response.json(arr_result);
+      // return response.json(result);
+    });
+  // } )
+  // con.end();
+
+  // let myobj = {
+  //   email: req.body.email,
+  //   wallet: req.body.wallet,
+  //   balance: req.body.balance,
+  //   phone: req.body.phone,
+  //   vip: req.body.vip, 
+  //   timestamp: new Date()
+  // };
+  // let success = true;
+  // console.log(myobj)
+  // db_connect.collection("users").findOne({email: myobj["email"], wallet: myobj["wallet"], vip: myobj["vip"]}, (err, res) => {
+  //   if (err) throw err;
+  //   if (res !== null){
+  //     return response.status(400).send({message: 0})
+  //   } 
+  //   db_connect.collection("users").insertOne(myobj, function (err, res) {
+  //     if (err) throw err;
+  //     return response.json(res);
+  //   });
+  // })
+});
+
 module.exports = recordRoutes;
